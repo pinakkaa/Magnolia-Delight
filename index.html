@@ -63,6 +63,30 @@
         background-position-x: -50rem !important;
             }
         }
+        /* Was 750px — reduce to something reasonable */
+.luxora-gallery-slide img {
+    width: 100%;
+    height: 480px;   /* ← change this value to your preference */
+    object-fit: cover;
+    display: block;
+}
+
+/* Update the responsive breakpoints too */
+@media(max-width: 1400px) {
+    .luxora-gallery-slide img { height: 400px; }
+}
+@media(max-width: 1200px) {
+    .luxora-gallery-slide img { height: 360px; }
+}
+@media(max-width: 992px) {
+    .luxora-gallery-slide img { height: 300px; }
+}
+@media(max-width: 768px) {
+    .luxora-gallery-slide img { height: 240px; }
+}
+@media(max-width: 480px) {
+    .luxora-gallery-slide img { height: 200px; }
+}
     </style>
 </head>
 
@@ -752,7 +776,6 @@
                 <!-- Dots -->
                 <div class="luxora-gallery-dots">
                     <span class="luxora-gallery-dot active"></span>
-                    <span class="luxora-gallery-dot"></span>
                     <span class="luxora-gallery-dot"></span>
                     <span class="luxora-gallery-dot"></span>
                     <span class="luxora-gallery-dot"></span>

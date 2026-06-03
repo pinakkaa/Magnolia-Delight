@@ -42,3 +42,23 @@ document.querySelectorAll('.nav-links a').forEach(link => {
         navLinks.classList.remove("active");
     });
 });
+
+
+let lastScrollY = window.scrollY;
+
+window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY <= 10) {
+        // At the very top — always show
+        document.querySelector(".navbar").style.transform = "translateY(0)";
+    } else if (currentScrollY > lastScrollY) {
+        // Scrolling DOWN — hide navbar
+        document.querySelector(".navbar").style.transform = "translateY(-100%)";
+    } else {
+        // Scrolling UP — show navbar
+        document.querySelector(".navbar").style.transform = "translateY(0)";
+    }
+
+    lastScrollY = currentScrollY;
+});

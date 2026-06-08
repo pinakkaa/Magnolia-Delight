@@ -12,7 +12,7 @@ body {
     scroll-behavior: smooth;
     font-family: "Montserrat", sans-serif;
     /* background: linear-gradient(#F8EAD6, #F9E3C6); */
-    background: #dedad3;
+    background: #DED9D2;
 }
 
 .main-container {
@@ -86,6 +86,7 @@ body {
 .about-title {
     color: #004274;
     text-align: left !important;
+    font-size: 2rem;
 }
 .about-logo {
     width: 120px;
@@ -97,10 +98,12 @@ body {
 }
 .about-content {
     font-family: "Barlow", sans-serif;
-    font-size: 13.5px;
+    font-size: 1rem;
     font-weight: 400;
     line-height: 24px;
     color: #666666d6;
+    text-align: justify;
+    letter-spacing: 0.5px;
 }
 .about-points-wrapper {
     display: flex;
@@ -1929,43 +1932,169 @@ h2.project-title {
 
 
 /* Masterplan Section */
-
-.masterplan-section {
-    width: 100%;
-    padding: 30px 0;
-}
-.masterplan-section-wrapper {
+/* =========================
+   MASTERPLAN SLIDER
+========================= */
+.masterplan-section{
+    padding: 50px 0 0 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 3rem;
+    gap: 4rem;
 }
-.masterplan-title-wrapper {
+.mplan-section-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+}
+
+.mplan-title-wrapper {
     width: 100%;
     text-align: center;
 }
-.masterplan-title {
+
+.mplan-slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.mplan-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 510px;
+}
+
+.mplan-card {
+    min-width: 100%;
+    flex-shrink: 0;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.mplan-card img {
+    width: 100%;
+    height: 100%;
+    /* max-height: 761px; */
+    object-fit: cover;
+    background: #DED9D2;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.mplan-card:hover img {
+    transform: scale(1.02);
+}
+
+.mplan-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    background: #004274;
+    color: white;
+    font-size: 20px;
+    z-index: 10;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+}
+
+.mplan-btn:hover {
+    background: #002f55;
+}
+
+.mplan-prev {
+    left: 15px;
+}
+
+.mplan-next {
+    right: 15px;
+}
+
+.mplan-counter {
+    text-align: center;
+    font-family: "Barlow", sans-serif;
+    font-size: 15px;
     color: #004274;
-    text-align: center !important;
+    letter-spacing: 1px;
+}
+
+/* MASTERPLAN LIGHTBOX */
+
+.mplan-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 999999;
+}
+
+.mplan-lightbox.mplan-lightbox-active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.mplan-lightbox-img {
+    max-width: 95%;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.mplan-lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #ffffff;
+    font-size: 50px;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.mplan-lightbox-close:hover {
+    color: #cccccc;
+}
+.masterplan-title{
     font-family: "Gilda Display", serif;
     font-weight: 400;
     font-style: normal;
     font-size: 2.5rem;
-    font-weight: 400;
     line-height: 1.2;
     color: #004274;
     letter-spacing: 0.02em;
     text-transform: uppercase;
     text-align: center !important;
 }
-.masterplan-contetn-wrapper {
-    width: 100%;
-    max-height: 761px;
+
+/* RESPONSIVE */
+
+@media(max-width: 768px) {
+    .mplan-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    .mplan-prev { left: 8px; }
+    .mplan-next { right: 8px; }
 }
-.masterplan-image {
-    width: 100%;
-    height: 100%;
+
+@media(max-width: 480px) {
+    .mplan-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+    }
 }
 
 /* =========================
@@ -2652,9 +2781,8 @@ h2.project-title {
     }
 }
 
-
 .floorplan-section {
-    padding: 100px 0;
+    padding: 100px 0 60px;
 }
 
 .floorplan-heading {
@@ -2663,14 +2791,10 @@ h2.project-title {
 }
 
 .floorplan-heading h2 {
-    /* font-size: 48px; */
-    color: #004274;
-    margin-bottom: 10px;
     font-family: "Gilda Display", serif;
     font-weight: 400;
     font-style: normal;
     font-size: 2.5rem;
-    font-weight: 400;
     line-height: 1.2;
     color: #004274;
     letter-spacing: 0.02em;
@@ -2678,45 +2802,36 @@ h2.project-title {
     text-align: center !important;
 }
 
-.floorplan-heading p {
-    max-width: 600px;
-    margin: auto;
-}
-
 .floorplan-slider-container {
     position: relative;
-    max-width: 1300px;
-    margin: auto;
+    width: 100%;
     overflow: hidden;
 }
 
 .floorplan-slider {
     display: flex;
-    gap: 25px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-}
-
-.floorplan-slider::-webkit-scrollbar {
-    display: none;
+    transition: transform 0.5s ease-in-out;
+    height: 500px;
 }
 
 .floorplan-card {
-    flex: 0 0 420px;
-    border-radius: 15px;
+    min-width: 100%;
+    flex-shrink: 0;
     overflow: hidden;
     cursor: pointer;
 }
 
 .floorplan-card img {
     width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #DED9D2;
     display: block;
-    transition: 0.4s;
+    transition: transform 0.4s ease;
 }
 
 .floorplan-card:hover img {
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .floor-btn {
@@ -2730,19 +2845,32 @@ h2.project-title {
     border-radius: 50%;
     background: #004274;
     color: white;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     z-index: 10;
     font-size: 20px;
+    transition: background 0.3s ease;
+}
+
+.floor-btn:hover {
+    background: #002f55;
 }
 
 .floor-prev {
-    left: 10px;
+    left: 10%;
 }
 
 .floor-next {
-    right: 10px;
+    right: 10%;
 }
 
+.floorplan-counter {
+    text-align: center;
+    margin-top: 20px;
+    font-family: "Barlow", sans-serif;
+    font-size: 15px;
+    color: #004274;
+    letter-spacing: 1px;
+}
 
 .floorplan-lightbox {
     position: fixed;
@@ -2775,4 +2903,158 @@ h2.project-title {
     color: white;
     font-size: 50px;
     cursor: pointer;
+    line-height: 1;
+}
+
+@media(max-width: 992px) {
+    .floorplan-card img {
+        height: 500px;
+    }
+}
+
+@media(max-width: 768px) {
+    .floorplan-section {
+        padding: 70px 0 40px;
+    }
+    .floorplan-card img {
+        height: 380px;
+    }
+    .floor-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 16px;
+    }
+    .floor-prev { left: 10px; }
+    .floor-next { right: 10px; }
+}
+
+@media(max-width: 480px) {
+    .floorplan-card img {
+        height: 260px;
+    }
+    .floor-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+}
+
+
+/* Project Highlights Section  */
+
+
+.project-highlights-section{
+    padding: 100px 0 50px 0;
+    width: 100%;
+}
+.project-highlights-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.project-highlights-points{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem;
+    text-align: center;
+}
+.project-highlights-image{
+    height: 50px;
+    width: 50px;
+}
+.project-highlights-title{
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+
+
+/* =========================
+   LOCATION ACCORDION
+========================= */
+
+.locadv-accordion-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.locadv-item {
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.locadv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #004274;
+    color: #ffffff;
+    padding: 16px 22px;
+    cursor: pointer;
+    font-family: "Barlow", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    user-select: none;
+    transition: background 0.3s ease;
+}
+
+.locadv-header:hover {
+    background: #003060;
+}
+
+.locadv-arrow {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.locadv-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    background: #ffffff;
+    padding: 0 22px;
+}
+
+.locadv-item.locadv-open .locadv-body {
+    max-height: 500px;
+    padding: 10px 22px 16px;
+}
+
+.locadv-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 66, 116, 0.1);
+    font-family: "Barlow", sans-serif;
+    font-size: 14px;
+    color: #333333;
+}
+
+.locadv-row:last-child {
+    border-bottom: none;
+}
+
+.locadv-row span:last-child {
+    color: #888888;
+    font-size: 13px;
+    white-space: nowrap;
+    margin-left: 12px;
+}
+
+@media(max-width: 768px) {
+    .locadv-header {
+        font-size: 14px;
+        padding: 14px 16px;
+    }
+    .locadv-row {
+        font-size: 13px;
+    }
 }

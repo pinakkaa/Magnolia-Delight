@@ -62,3 +62,20 @@ window.addEventListener("scroll", () => {
 
     lastScrollY = currentScrollY;
 });
+
+
+// close popup on close button click
+document.getElementById("projectEnquiryClose")
+.addEventListener("click", () => {
+    document.getElementById("projectEnquiryPopup")
+    .classList.remove("active");
+});
+
+// close popup on outside click
+document.getElementById("projectEnquiryPopup")
+.addEventListener("click", (e) => {
+    if (e.target === document.getElementById("projectEnquiryPopup")) {
+        document.getElementById("projectEnquiryPopup")
+        .classList.remove("active");
+    }
+});

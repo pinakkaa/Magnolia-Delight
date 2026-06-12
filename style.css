@@ -1969,7 +1969,7 @@ h2.project-title {
 
 .mplan-card {
     min-width: 100%;
-    flex-shrink: 0;
+    /* flex-shrink: 0; */
     cursor: pointer;
     overflow: hidden;
 }
@@ -2816,7 +2816,7 @@ h2.project-title {
 
 .floorplan-card {
     min-width: 100%;
-    flex-shrink: 0;
+    /* flex-shrink: 0; */
     overflow: hidden;
     cursor: pointer;
 }
@@ -3056,5 +3056,231 @@ h2.project-title {
     }
     .locadv-row {
         font-size: 13px;
+    }
+}
+
+
+/* =============================================
+   PROJECT HIGHLIGHTS SECTION — RESPONSIVE FIX
+   Replace the existing .project-highlights-*
+   rules in style.css with these.
+============================================= */
+
+.project-highlights-section {
+    padding: 100px 0 50px 0;
+    width: 100%;
+}
+
+.project-highlights-wrapper {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 items in a row on desktop */
+    align-items: start;
+    gap: 0;
+    padding: 0 20px;
+}
+
+.project-highlights-points {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.2rem 0.8rem;
+    text-align: center;
+    /* Subtle vertical divider between items */
+    border-right: 1px solid rgba(0, 66, 116, 0.12);
+}
+
+.project-highlights-points:last-child {
+    border-right: none;
+}
+
+.project-highlights-image {
+    height: 44px;
+    width: 44px;
+    object-fit: contain;
+}
+
+.project-highlights-title {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #004274;
+    line-height: 1.45;
+    letter-spacing: 0.3px;
+}
+
+/* =========================
+   LARGE LAPTOP  (≤ 1200px)
+   Still one row, slightly tighter
+========================= */
+@media (max-width: 1200px) {
+    .project-highlights-wrapper {
+        gap: 0;
+        padding: 0 12px;
+    }
+
+    .project-highlights-points {
+        padding: 1rem 0.5rem;
+    }
+
+    .project-highlights-title {
+        font-size: 0.74rem;
+    }
+
+    .project-highlights-image {
+        height: 38px;
+        width: 38px;
+    }
+}
+
+/* =========================
+   TABLET  (≤ 992px)
+   Switch to 4-column grid
+========================= */
+@media (max-width: 992px) {
+    .project-highlights-section {
+        padding: 80px 0 40px;
+    }
+
+    .project-highlights-wrapper {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        padding: 0 24px;
+    }
+
+    .project-highlights-points {
+        padding: 1.4rem 1rem;
+        border-right: 1px solid rgba(0, 66, 116, 0.12);
+        border-bottom: 1px solid rgba(0, 66, 116, 0.12);
+    }
+
+    /* Remove right border on every 4th item */
+    .project-highlights-points:nth-child(4n) {
+        border-right: none;
+    }
+
+    /* Remove bottom border on last row items */
+    .project-highlights-points:nth-last-child(-n+3) {
+        border-bottom: none;
+    }
+
+    .project-highlights-points:last-child {
+        border-bottom: none;
+        border-right: none;
+    }
+
+    .project-highlights-image {
+        height: 42px;
+        width: 42px;
+    }
+
+    .project-highlights-title {
+        font-size: 0.82rem;
+    }
+}
+
+/* =========================
+   MOBILE  (≤ 768px)
+   Switch to 3-column grid
+========================= */
+@media (max-width: 768px) {
+    .project-highlights-section {
+        padding: 70px 0 30px;
+    }
+
+    .project-highlights-wrapper {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0 16px;
+    }
+
+    .project-highlights-points {
+        padding: 1.2rem 0.75rem;
+        border-right: 1px solid rgba(0, 66, 116, 0.12);
+        border-bottom: 1px solid rgba(0, 66, 116, 0.12);
+        gap: 0.75rem;
+    }
+
+    .project-highlights-points:nth-child(4n) {
+        border-right: revert; /* reset tablet rule */
+    }
+
+    /* Remove right border on every 3rd item */
+    .project-highlights-points:nth-child(3n) {
+        border-right: none;
+    }
+
+    /* Last row: no bottom border */
+    .project-highlights-points:nth-last-child(-n+1) {
+        border-bottom: none;
+    }
+
+    .project-highlights-points:last-child {
+        border-bottom: none;
+        border-right: none;
+    }
+
+    .project-highlights-image {
+        height: 38px;
+        width: 38px;
+    }
+
+    .project-highlights-title {
+        font-size: 0.78rem;
+        line-height: 1.4;
+    }
+    .floorplan-slider{
+        height: auto;
+    }
+}
+
+/* =========================
+   SMALL MOBILE  (≤ 480px)
+   Switch to 2-column grid
+========================= */
+@media (max-width: 480px) {
+    .project-highlights-section {
+        padding: 60px 0 24px;
+    }
+
+    .project-highlights-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 12px;
+    }
+
+    .project-highlights-points {
+        padding: 1.1rem 0.75rem;
+        gap: 0.65rem;
+        border-right: 1px solid rgba(0, 66, 116, 0.12);
+        border-bottom: 1px solid rgba(0, 66, 116, 0.12);
+    }
+
+    /* Reset previous nth-child rules */
+    .project-highlights-points:nth-child(3n) {
+        border-right: revert;
+    }
+
+    /* Remove right border on every even item */
+    .project-highlights-points:nth-child(2n) {
+        border-right: none;
+    }
+
+    .project-highlights-points:last-child {
+        border-bottom: none;
+        border-right: none;
+    }
+
+    /* If last row has only 1 item, span it */
+    .project-highlights-points:last-child:nth-child(odd) {
+        grid-column: span 2;
+        border-right: none;
+    }
+
+    .project-highlights-image {
+        height: 34px;
+        width: 34px;
+    }
+
+    .project-highlights-title {
+        font-size: 0.76rem;
     }
 }
